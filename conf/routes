@@ -1,0 +1,20 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           @controllers.DefaultController.index
+
+# API
+GET     /accounts                    @controllers.BankController.getAllAccounts()
+GET     /accounts/query              @controllers.BankController.getAccountsByEmail(email: String)
+POST    /accounts                    @controllers.BankController.addAccount()
+GET     /accounts/:id                @controllers.BankController.getAccount(id: String)
+PUT     /accounts/:id                @controllers.BankController.updateAccount(id: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# API documentation
+GET     /api-docs.json               controllers.ApiHelpController.getResources
+GET     /api-docs.json/bank          controllers.ApiHelpController.getResource(path = "/bank")
